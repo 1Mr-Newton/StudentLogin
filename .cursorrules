@@ -1,0 +1,7 @@
+Create a student information application. The app should have a register, a login and a
+information landing activity. The following should be the functionalities of the app.
+
+1. When you click on the register button, students should be redirected to the login.
+2. When you click on the login button, students should be redirected to the landing activity.
+3. Using intent, pass the data collected from the register activity to the login activity and
+also from login activity to landing activity.
