@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LandingActivity extends AppCompatActivity {
-    private TextView textViewFullName, textViewAge, textViewProgramme;
+    private TextView displayStudentName, displayStudentAge, displayStudentProgramme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,21 +14,21 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
 
         // Initialize views
-        textViewFullName = findViewById(R.id.textViewFullName);
-        textViewAge = findViewById(R.id.textViewAge);
-        textViewProgramme = findViewById(R.id.textViewProgramme);
+        displayStudentName = findViewById(R.id.textViewFullName);
+        displayStudentAge = findViewById(R.id.textViewAge);
+        displayStudentProgramme = findViewById(R.id.textViewProgramme);
 
         // Get data from intent
         Intent intent = getIntent();
         if (intent != null) {
-            String name = intent.getStringExtra("name");
-            String age = intent.getStringExtra("age");
-            String programme = intent.getStringExtra("programme");
+            String studentName = intent.getStringExtra("name");
+            String studentAge = intent.getStringExtra("age");
+            String studentProgramme = intent.getStringExtra("programme");
 
             // Display the information
-            textViewFullName.setText("Full Name: " + name);
-            textViewAge.setText("Age: " + age);
-            textViewProgramme.setText("Programme: " + programme);
+            displayStudentName.setText("Full Name: " + studentName);
+            displayStudentAge.setText("Age: " + studentAge);
+            displayStudentProgramme.setText("Programme: " + studentProgramme);
         }
     }
 } 

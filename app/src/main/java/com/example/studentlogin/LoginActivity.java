@@ -9,10 +9,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText editTextLoginEmail, editTextLoginPassword;
-    private Button buttonLogin;
-    private String registeredEmail, registeredPassword;
-    private String name, age, programme;
+    private EditText inputLoginEmail, inputLoginPassword;
+    private Button btnStudentLogin;
+    private String storedEmail, storedPassword;
+    private String studentName, studentAge, studentProgramme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,37 +20,37 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Initialize views
-        editTextLoginEmail = findViewById(R.id.editTextLoginEmail);
-        editTextLoginPassword = findViewById(R.id.editTextLoginPassword);
-        buttonLogin = findViewById(R.id.buttonLogin);
+        inputLoginEmail = findViewById(R.id.editTextLoginEmail);
+        inputLoginPassword = findViewById(R.id.editTextLoginPassword);
+        btnStudentLogin = findViewById(R.id.buttonLogin);
 
         // Get registration data from intent
         Intent intent = getIntent();
         if (intent != null) {
-            registeredEmail = intent.getStringExtra("email");
-            registeredPassword = intent.getStringExtra("password");
-            name = intent.getStringExtra("name");
-            age = intent.getStringExtra("age");
-            programme = intent.getStringExtra("programme");
+            storedEmail = intent.getStringExtra("email");
+            storedPassword = intent.getStringExtra("password");
+            studentName = intent.getStringExtra("name");
+            studentAge = intent.getStringExtra("age");
+            studentProgramme = intent.getStringExtra("programme");
 
             // Pre-fill email if coming from registration
-            if (registeredEmail != null) {
-                editTextLoginEmail.setText(registeredEmail);
+            if (storedEmail != null) {
+                inputLoginEmail.setText(storedEmail);
             }
         }
 
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+        btnStudentLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = editTextLoginEmail.getText().toString().trim();
-                String password = editTextLoginPassword.getText().toString().trim();
+                String email = inputLoginEmail.getText().toString().trim();
+                String password = inputLoginPassword.getText().toString().trim();
 
                 if (validateLogin(email, password)) {
                     // Pass data to LandingActivity
                     Intent landingIntent = new Intent(LoginActivity.this, LandingActivity.class);
-                    landingIntent.putExtra("name", name);
-                    landingIntent.putExtra("age", age);
-                    landingIntent.putExtra("programme", programme);
+                    landingIntent.putExtra("name", studentName);
+                    landingIntent.putExtra("age", studentAge);
+                    landingIntent.putExtra("programme", studentProgramme);
                     startActivity(landingIntent);
                     finish();
                 }
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if (email.equals(registeredEmail) && password.equals(registeredPassword)) {
+        if (email.equals(storedEmail) && password.equals(storedPassword)) {
             return true;
         } else {
             Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
